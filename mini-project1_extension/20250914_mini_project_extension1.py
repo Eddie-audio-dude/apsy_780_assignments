@@ -1,6 +1,7 @@
 # Simulate Stroop task and RTs
 # Here I simulate across multiple participants and investigate within-subject var.
 # Group-level effects are also investigated via a boxplot.
+# Lastly, there was 10 practice trials for each participant.
 
 import numpy as np
 import pandas as pd
@@ -46,7 +47,7 @@ def simulate_participants(participants = 10):
         
         results = data.assign(ID = ID)
         
-        results_clean = results[results["trial"] > 10] # This will remove the first 10 trials
+        results_clean = results[results["trial"] > 10] # This will remove the first 10 practice trials.
         
         all_participants.append(results_clean)
         
@@ -77,4 +78,5 @@ results.to_csv(f"./{datetime.datetime.now().strftime('%Y%m%d')}_stroop_data.csv"
 
 # Plots and analysis are all packaged together to help do some EDA.
 analyze_rts(results)
+
 
